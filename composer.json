@@ -1,0 +1,17 @@
+{
+  "name": "rakit/console",
+  "description": "PHP Simple Library to Create Command Line Interface Application",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Muhammad Syifa",
+      "email": "emsifa@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+        "Rakit\\Console\\": "src"
+    }
+  }
+}
