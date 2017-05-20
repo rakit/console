@@ -448,7 +448,7 @@ class App
             if ($this->isOption($arg)) {
                 $optName = ltrim($arg, "-");
                 if ($this->isOptionWithValue($arg)) {
-                    list($optName, $optvalue) = explode("=", $arg);
+                    list($optName, $optvalue) = explode("=", $optName);
                 } else {
                     $optvalue = array_shift($argv);
                 }
@@ -598,7 +598,7 @@ class App
         $options = $this->options;
         $optionsAlias = $this->optionsAlias;
         $commandOptions = $this->commands[$command]['options'];
-        $resolvedOptions = [];
+        $resolvedOptions = $options;
 
         foreach ($commandOptions as $optName => $optionSetting) {
             $alias = $optionSetting['alias'];
