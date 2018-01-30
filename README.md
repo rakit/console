@@ -18,14 +18,14 @@ This library strongly inspired by [Laravel Artisan Console](https://laravel.com/
 Just run this composer command:
 
 ```bash
-composer require emsifa/commando
+composer require rakit/console
 ```
 
 ## Quickstart
 
 #### 1. Create App
 
-Create a file named `commando` (without extension).
+Create a file named `cli` (without extension).
 
 ```php
 <?php
@@ -51,7 +51,7 @@ $app->run();
 Open terminal/cmd, go to your app directory, run this command:
 
 ```
-php commando hello "John Doe"
+php cli hello "John Doe"
 ```
 
 #### 3. Command List
@@ -59,7 +59,7 @@ php commando hello "John Doe"
 You can see available commands by typing this:
 
 ```
-php commando list
+php cli list
 ```
 
 #### 4. Show Help
@@ -67,5 +67,5 @@ php commando list
 You can show help by putting `--help` or `-h` for each command. For example:
 
 ```
-php commando hello --help
+php cli hello --help
 ```
