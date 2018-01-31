@@ -24,7 +24,7 @@ trait InputUtils
         $handle = fopen("php://stdin", "r");
         $answer = trim(fgets($handle));
         fclose($handle);
-        return $answer;
+        return $answer ?: $default;
     }
 
     /**
@@ -34,7 +34,7 @@ trait InputUtils
      * @param string $fgColor
      * @param string $bgColor
      */
-    public function askSecret($question, $default)
+    public function askSecret($question, $default = null)
     {
         if ($default) {
             $question = $question. ' ' .$this->color("[{$default}]", 'green');
@@ -55,7 +55,7 @@ trait InputUtils
             if (isset($tmpExe)) {
                 unlink($tmpExe);
             }
-            return $value;
+            return $value ?: $default;
         }
 
         if ($this->hasSttyAvailable()) {
@@ -70,7 +70,7 @@ trait InputUtils
             }
             $value = trim($value);
             $this->writeln('');
-            return $value;
+            return $value ?: $default;
         }
 
         if (false !== $shell = $this->getShell()) {
@@ -78,10 +78,10 @@ trait InputUtils
             $command = sprintf("/usr/bin/env %s -c 'stty -echo; %s; stty echo; echo \$mypassword'", $shell, $readCmd);
             $value = rtrim(shell_exec($command));
             $this->writeln('');
-            return $value;
+            return $value ?: $default;
         }
 
-        throw new RuntimeException('Unable to hide the response.');
+        throw new \RuntimeException('Unable to hide the response.');
     }
 
     /**
