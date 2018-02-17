@@ -568,10 +568,9 @@ class App
             $command = array_shift($values);
             $this->writeln(PHP_EOL.$this->color(" Command '{$keyword}' is not available. Did you mean '{$name}'?", 'red').PHP_EOL);
         } else {
-            echo "WOI";
             $this->writeln(PHP_EOL.$this->color(" Command '{$keyword}' is not available.", 'red'));
             $commandList = $this->commands["list"]["handler"];
-            $commandList->handle(count($matchedCommands)? $keyword : null);
+            $commandList(count($matchedCommands)? $keyword : null);
         }
     }
 
