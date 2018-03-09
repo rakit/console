@@ -535,14 +535,14 @@ class App
 
         foreach ($commandOptions as $optName => $optionSetting) {
             $alias = $optionSetting['alias'];
-            if ($alias AND isset($optionsAlias[$alias])) {
-                $value = isset($optionsAlias[$alias])? $optionsAlias[$alias] : $optionSetting['default'];
+            if ($alias AND array_key_exists($alias, $optionsAlias)) {
+                $value = array_key_exists($alias, $optionsAlias)? $optionsAlias[$alias] : $optionSetting['default'];
             } else {
-                $value = isset($options[$optName])? $options[$optName] : $optionSetting['default'];
+                $value = array_key_exists($optName, $options)? $options[$optName] : $optionSetting['default'];
             }
 
             if (!$optionSetting['is_valuable']) {
-                $resolvedOptions[$optName] = !empty($value);
+                $resolvedOptions[$optName] = array_key_exists($alias, $optionsAlias) || array_key_exists($optName, $options);
             } else {
                 $resolvedOptions[$optName] = $value;
             }
